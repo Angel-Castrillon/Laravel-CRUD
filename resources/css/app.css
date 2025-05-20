@@ -1,0 +1,6 @@
+@import "../css/app.css";
+@source "../views";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
