@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CRUDController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 
 
 
@@ -18,7 +19,7 @@ Route::prefix('CRUD')->name('CRUD.')->controller(CRUDController::class)->group(f
     //* Rutas alquiler
     Route::get('/catalogo', 'catalogo')->name('catalogo'); // Catalogo de e-books
     Route::get('/rentals', 'rentals')->name('rentals'); // Mostrar listado de libros alquilados
-    Route::post('/', 'rent')->name('rent'); // Envio de formulario de crear un alquiler de un e-book
+    Route::post('/rent', 'rent')->name('rent'); // Envio de formulario de crear un alquiler de un e-book
 
 
 
@@ -39,4 +40,10 @@ Route::prefix('Auth')->name('Auth.')->controller(AuthController::class)->group(f
         Route::post('/register', 'postRegister')->name('postRegister'); // Envio de formulario Register
     });
     
+});
+
+// Rutas de perfil
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });

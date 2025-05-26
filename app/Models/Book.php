@@ -7,8 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
+    protected $fillable = [
+        'title',
+        'author',
+        'stock'
+    ];
+
     public function rentals()
-{
-    return $this->hasMany(Rental::class);
-}
+    {
+        return $this->hasMany(Rental::class);
+    }
 }
